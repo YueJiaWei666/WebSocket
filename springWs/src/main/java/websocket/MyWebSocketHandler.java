@@ -39,7 +39,8 @@ public class MyWebSocketHandler implements WebSocketHandler {
 	/**
 	 * 建立连接后,把登录用户的id写入WebSocketSession
 	 */
-	public void afterConnectionEstablished(WebSocketSession session)throws Exception {
+	public void afterConnectionEstablished(WebSocketSession session)
+			throws Exception {
 		Long uid = (Long) session.getAttributes().get("uid");
 		String username=loginservice.getnamebyid(uid);
 		if (userSocketSessionMap.get(uid) == null) {

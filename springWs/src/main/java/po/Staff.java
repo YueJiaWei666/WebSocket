@@ -1,6 +1,10 @@
 package po;
 
-
+/**
+ * 用户表
+ * @author 开发
+ *
+ */
 public class Staff {
 	private byte staff_id;//主键id
 	private String first_name;//用户姓名
@@ -10,7 +14,6 @@ public class Staff {
 	private String username;//登陆名称
 	private String password;//登陆密码
 	private String last_update;//时间
-	
 	
 	public String getLast_update() {
 		return last_update;

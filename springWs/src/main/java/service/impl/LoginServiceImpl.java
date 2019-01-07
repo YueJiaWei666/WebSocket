@@ -1,6 +1,4 @@
 package service.impl;
-
-
 import mapper.LoginMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +14,21 @@ import service.LoginService;
 public class LoginServiceImpl implements LoginService{
 	@Autowired
 	LoginMapper loginmapper;
+	
+	/**
+	 * 根据用户名获取用户密码
+	 */
 	public String getpwdbyname(String name) {
 		Staff s=loginmapper.getpwdbyname(name);
-		if(s!=null)
-		return s.getPassword();
-		else
-		return null;
+		if(s!=null){
+			return s.getPassword();
+		}else{
+			return null;
+		}
 	}
+	/**
+	 * 根据用户名获取用户id
+	 */
 	public Long getUidbyname(String name) {
 		Staff s=loginmapper.getpwdbyname(name);
 		if(s!=null)
@@ -30,14 +36,15 @@ public class LoginServiceImpl implements LoginService{
 			else
 			return null;
 	}
+	/**
+	 * 根据用户id获取用户名
+	 */
 	public String getnamebyid(long id) {
 		Staff s=loginmapper.getnamebyid(id);
-		if(s!=null)
+		if(s!=null){
 			return s.getUsername();
-			else
+		}else{
 			return null;
+		}
 	}
-	
-	
-
 }

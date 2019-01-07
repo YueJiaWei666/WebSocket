@@ -32,8 +32,7 @@ public class ChatController {
 	
 	@Autowired
 	LoginService loginservice;
-		
-	//查看所有在线用户
+	
 	@RequestMapping("/onlineusers")
 	@ResponseBody
 	public Set<String> onlineusers(HttpSession session){
@@ -51,6 +50,7 @@ public class ChatController {
 		}
 		return nameset;
 	}
+	
 	// 发布系统广播（群发）
 	@ResponseBody
 	@RequestMapping(value = "broadcast", method = RequestMethod.POST)
@@ -63,11 +63,10 @@ public class ChatController {
 		msg.setText(text);
 		handler.broadcast(new TextMessage(new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create().toJson(msg)));
 	}
-	// 双人聊天 (单发)	
+		
 	@RequestMapping("getuid")
 	@ResponseBody
 	public User getuid(@RequestParam("username")String username){
-		System.out.println(username);
 		Long a=loginservice.getUidbyname(username);
 		User u=new User();
 		u.setUid(a);

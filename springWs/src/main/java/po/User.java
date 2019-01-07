@@ -1,5 +1,9 @@
 package po;
-
+/**
+ * vo
+ * @author 开发
+ *
+ */
 public class User {
 	Long uid;
 

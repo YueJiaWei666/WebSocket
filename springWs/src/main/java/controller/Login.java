@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import service.LoginService;
-
 /**
- * 登陆
+ * 登陆接口
  * @author 开发
  *
  */
@@ -19,8 +18,7 @@ public class Login {
 	LoginService loginservice;
 	
 	@RequestMapping("/loginvalidate")
-	public String loginvalidate(@RequestParam("username") String username,@RequestParam("pic")String pic,
-			@RequestParam("password") String pwd,HttpSession httpSession){
+	public String loginvalidate(@RequestParam("username") String username,@RequestParam("pic") String pic,@RequestParam("password") String pwd,HttpSession httpSession){
 		String picode=(String) httpSession.getAttribute("rand");
 		if(!picode.equalsIgnoreCase(pic)){
 			return "failcode";
@@ -28,13 +26,12 @@ public class Login {
 		if(username==null){
 			return "login";
 		}
-		
 		String realpwd=loginservice.getpwdbyname(username);
 		if(realpwd!=null&&pwd.equals(realpwd)){
 			long uid=loginservice.getUidbyname(username);
 			httpSession.setAttribute("username", username);
-			httpSession.setAttribute("uid", uid);//数据存在session中
-			return "chatroom";//跳转聊天页面
+			httpSession.setAttribute("uid", uid);
+			return "chatroom";
 		}else{
 			return "fail";
 		}
@@ -48,7 +45,7 @@ public class Login {
 	@RequestMapping("/logout")
 	public String logout(HttpSession httpSession){
 		httpSession.removeAttribute("username");
-		httpSession.removeAttribute("uid");//移除session中的数据
+		httpSession.removeAttribute("uid");
 		return "login";
 	}
-  }
+}

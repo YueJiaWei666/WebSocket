@@ -2,9 +2,10 @@ package service;
 
 
 public interface LoginService {
-	//根据登陆名查看密码
+	//根据用户名获取用户密码
 	String getpwdbyname(String name);
+	//根据用户名获取用户id
 	Long getUidbyname(String name);
-	//根据id查看登陆名
+	//根据用户id获取用户id
 	String getnamebyid(long id);
 }

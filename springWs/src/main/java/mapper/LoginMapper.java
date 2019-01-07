@@ -4,8 +4,16 @@ import po.Staff;
 
 
 public interface LoginMapper {
-	//根据登陆名查看密码
+	/**
+	 * 根据用户名获取用户信息
+	 * @param name
+	 * @return
+	 */
 	Staff getpwdbyname(String name);
-	//根据id查看登陆名
+	/**
+	 * 根据用户id获取用户信息
+	 * @param id
+	 * @return
+	 */
 	Staff getnamebyid(long id);
 }

@@ -16,41 +16,35 @@
     http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
     http://www.springframework.org/schema/util 
     http://www.springframework.org/schema/util/spring-util-3.2.xsd">
-    
-	<context:property-placeholder location="classpath:conf/*.properties" />
-	<!-- 数据库连接池 -->
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-		destroy-method="close">
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
-		<property name="driverClassName" value="${jdbc.driver}" />
-		<!-- 最大并发连接数 -->
-		<property name="maxActive" value="30" />
-		<!-- 最小空闲连接数 -->
-		<property name="minIdle" value="5" />
-		<!-- 用于显示数据源监控中的sql语句监控 -->
-		<property name="filters" value="stat" />
-	</bean>		
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close"
+		p:driverClass="com.mysql.jdbc.Driver"
+		p:jdbcUrl="jdbc:mysql://lkarat.cn:3306/ssm"
+		p:user="root"
+		p:password="root"
+		p:maxPoolSize="40"
+		p:minPoolSize="2"
+		p:initialPoolSize="2"
+		p:maxIdleTime="30"/>
     
     <!-- mybatis文件配置，扫描所有mapper文件 -->
     <bean id="sqlSessionFactory"
           class="org.mybatis.spring.SqlSessionFactoryBean"
           p:dataSource-ref="dataSource"
           p:configLocation="classpath:conf/mybatis-config.xml"
-          p:mapperLocations="classpath:mapper/*.xml"/> 
-          <!-- configLocation为mybatis属性 mapperLocations为所有mapper-->
+          p:mapperLocations="classpath:mapper/*.xml"/> <!-- configLocation为mybatis属性 mapperLocations为所有mapper-->
       
-   <!-- spring与mybatis整合配置，扫描所有mapper -->
-   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+   	<!-- spring与mybatis整合配置，扫描所有mapper -->
+ 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
         p:basePackage="mapper" 
         p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
  
-   <!-- 对数据源进行事务管理 -->
-   <bean id="transactionManager" 
+   	<!-- 对数据源进行事务管理 -->
+  	<bean id="transactionManager" 
         class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
         p:dataSource-ref="dataSource"/>
         
-   <tx:annotation-driven transaction-manager="transactionManager"/>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
         
 </beans>

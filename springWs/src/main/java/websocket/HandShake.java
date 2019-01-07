@@ -34,7 +34,8 @@ public class HandShake implements HandshakeInterceptor {
 	}
 
 	public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Exception exception) {
-		System.out.println("after hand");
+	System.out.println("after hand");
+	
 	}
 
 }

@@ -1,6 +1,11 @@
 package po;
 
 import java.util.Date;
+/**
+ * 聊天信息表
+ * @author 开发
+ *
+ */
 public class Message {
 
 	//发送者
