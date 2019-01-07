@@ -1,0 +1,3 @@
+项目改造自：https://gitee.com/shenzhanwang/Spring-websocket，下载即可用
+新增一个测试demo，在index.jsp中可以直接通过调websocket接口实现聊天，只需要maven中引入一个jar包
+项目接口除了适用H5之外，微信小程序同样适用，小程序测试demo在同一个项目下面
